@@ -3,19 +3,11 @@ import { ThemeToggleComponent } from './shared/components/theme-toggle/theme-tog
 import { ThemeService } from './shared/services/theme.service';
 import { MainComponent } from './layout/main/main.component';
 
-const COMPONENTS = [ThemeToggleComponent, MainComponent]
-
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [...COMPONENTS],
-  template: `
-    <div class="relative min-h-screen w-full">
-      <app-theme-toggle />
-
-     <app-main/>
-    </div>
-  `,
+  imports: [ThemeToggleComponent, MainComponent],
+  templateUrl: './app.component.html',
   styles: ``,
 })
 export class AppComponent implements OnInit {

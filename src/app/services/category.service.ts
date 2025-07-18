@@ -11,7 +11,7 @@ export class CategoryService {
   private readonly apiUrl = environment.apiUrl;
   private readonly httpClient = inject(HttpClient);
 
-  public categories = signal<Category[]>([]);
+  public categories = signal<Category[]>([]); // para usar em outros componentes.
 
   public getCategories(): Observable<Category[]> {
     return this.httpClient
@@ -20,4 +20,5 @@ export class CategoryService {
   }
 }
 
-// Operador tap (side efect) executa sempre que acontece uma nova emissão no observable, e recebe por padrão o retorno do observable.
+// Operador tap (side efect) executa sempre que acontece uma nova emissão no observable,
+// e recebe por padrão o retorno do observable.

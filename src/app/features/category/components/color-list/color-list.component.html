@@ -1,5 +1,15 @@
-<section>
+<section class="flex flex-col gap-4 w-full h-auto mb-4">
   <!-- Divisor -->
   <mat-divider class="opacity-50"></mat-divider>
-  <p>color-list works</p>
+
+  <div class="flex flex-wrap justify-center items-center mt-2 px-4 gap-4">
+    @for (c of categories(); track c.id) {
+      <span
+        class="select-none opacity-80 cursor-pointer hover:opacity-100 flex items-center justify-center {{
+          categoryColors[c.color]
+        }} text-white font-semibold px-4 py-2 rounded-xl w-[80px]">
+        {{ c.name }}
+      </span>
+    }
+  </div>
 </section>

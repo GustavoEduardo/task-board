@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { CategoryService } from '@app/services/category.service';
 
 @Component({
   selector: 'app-main-list',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   standalone: true,
 })
 export class MainListComponent {
-  constructor() {}
+  private readonly categoryService = inject(CategoryService);
+
+  public categories = this.categoryService.categories;
 }

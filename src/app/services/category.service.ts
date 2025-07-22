@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable, signal } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Category } from '@app/model/category.model';
 import { environment } from '@env/environment.prod';
-import { Observable, tap } from 'rxjs';
+import { catchError, Observable } from 'rxjs';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Injectable({
   providedIn: 'root',
@@ -11,14 +12,16 @@ export class CategoryService {
   private readonly apiUrl = environment.apiUrl;
   private readonly httpClient = inject(HttpClient);
 
-  public categories = signal<Category[]>([]); // para usar em outros componentes.
+  public categories = toSignal(this.getCategories(), {
+    initialValue: [] as Category[],
+  });
 
   public getCategories(): Observable<Category[]> {
-    return this.httpClient
-      .get<Category[]>(`${this.apiUrl}/categories`)
-      .pipe(tap(categories => this.categories.set(categories)));
+    return this.httpClient.get<Category[]>(`${this.apiUrl}/categories`).pipe(
+      catchError(err => {
+        console.log(err);
+        return [];
+      })
+    );
   }
 }
-
-// Operador tap (side efect) executa sempre que acontece uma nova emissão no observable,
-// e recebe por padrão o retorno do observable.

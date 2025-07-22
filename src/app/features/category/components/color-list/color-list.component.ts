@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { CategoryService } from '@app/services/category.service';
+import { categoryColors } from '@app/shared/constants/colors-list.component';
 
 @Component({
   selector: 'app-color-list',
@@ -13,11 +14,5 @@ export class ColorListComponent {
 
   public categories = this.categoryService.categories;
 
-  categoryColors: Record<string, string> = {
-    green: 'bg-green-600',
-    orange: 'bg-orange-600',
-    blue: 'bg-blue-600',
-    red: 'bg-red-600',
-    purple: 'bg-purple-600',
-  };
+  public categoryColors = categoryColors;
 }

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Category } from '@app/model/category.model';
-import { environment } from '@env/environment.prod';
+import { environment } from '@env/environment';
 import { catchError, Observable } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
 
